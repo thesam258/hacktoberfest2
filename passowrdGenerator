@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Function to generate a random password
+void generatePassword(int length) {
+    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+    const int charsetSize = sizeof(charset) - 1;
+
+    for (int i = 0; i < length; i++) {
+        int randomIndex = rand() % charsetSize;
+        printf("%c", charset[randomIndex]);
+    }
+
+    printf("\n");
+}
+
+int main() {
+    int passwordLength;
+
+    // Seed the random number generator with the current time
+    srand(time(NULL));
+
+    printf("Enter the desired password length: ");
+    scanf("%d", &passwordLength);
+
+    if (passwordLength <= 0) {
+        printf("Invalid password length.\n");
+    } else {
+        generatePassword(passwordLength);
+    }
+
+    return 0;
+}
